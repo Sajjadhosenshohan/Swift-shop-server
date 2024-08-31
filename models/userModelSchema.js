@@ -14,5 +14,6 @@ const userSchema = new mongoose.Schema({
 )
 
 const userModel = mongoose.model("swift-shop-user", userSchema)
+// this first parameter is collection name for db
 
 module.exports = userModel

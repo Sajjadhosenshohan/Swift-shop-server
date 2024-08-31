@@ -19,8 +19,9 @@ async function userSignUpController(req, res) {
             throw new Error("please provide password")
         }
 
-        var salt = bcrypt.genSaltSync(10);
-        var hashPassword = await bcrypt.hashSync(password, salt);
+        // var salt = bcrypt.genSaltSync(10);
+        // var hashPassword = await bcrypt.hashSync(password, salt);
+        const hashPassword = await bcrypt.hash(password, 10);
 
         if (!hashPassword) {
             throw new Error("something else")
@@ -30,6 +31,7 @@ async function userSignUpController(req, res) {
             ...req.body,
             password: hashPassword
         }
+        // console.log(payload)
         const userData = new userModel(payload)
         const saveUser = await userData.save()
 
