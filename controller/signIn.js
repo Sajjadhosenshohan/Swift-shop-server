@@ -29,19 +29,19 @@ async function userSignInController(req, res) {
                 email : user.email,
             }
             const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, { expiresIn: '1d' });
-            console.log(token)
-
+            console.log(token, "laga token")
+            
             const tokenOptions = {
                 httpOnly: true,
-                secure: true,
-                secure: process.env.NODE_ENV === 'production',
-            }
+                secure: false,  // Disable secure for local development
+            };
             
 
             res.cookie("token", token, tokenOptions).send({
-                success: true,
-                error: false,
-                message: "user login successfully"
+                message : "Login successfully",
+                data : token,
+                success : true,
+                error : false
             })
         } else {
             throw new Error("invalid password")
