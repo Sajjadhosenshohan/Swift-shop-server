@@ -29,7 +29,7 @@ async function userSignInController(req, res) {
                 email : user.email,
             }
             const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, { expiresIn: '1d' });
-            console.log(token, "laga token")
+            
             
             const tokenOptions = {
                 httpOnly: true,
