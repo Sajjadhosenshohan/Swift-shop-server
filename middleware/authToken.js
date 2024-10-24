@@ -5,7 +5,6 @@ const authToken = async (req, res, next) => {
     try{
         const token = req?.cookies?.token
 
-        console.log("tokenss",token)
         if(!token){
             return res.status(200).json({
                 message : "Please Login...!",
@@ -15,7 +14,6 @@ const authToken = async (req, res, next) => {
         }
 
         jwt.verify(token, process.env.TOKEN_SECRET, function(err, decoded) {
-            // console.log(err)
             console.log("decoded",decoded)
             
             if(err){
@@ -27,7 +25,6 @@ const authToken = async (req, res, next) => {
             next()
         });
 
-        console.log("laga error")
 
     }catch(err){
         res.status(400).json({

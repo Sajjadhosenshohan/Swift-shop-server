@@ -15,6 +15,8 @@ const getCategoryWiseProductController = require("../controller/getCategoryWiseP
 const productDetails = require("../controller/productDetails")
 const addToCartController = require("../controller/addToCartController")
 const countAddToCartProduct = require("../controller/countAddToCartProduct")
+const updateAddToCartProduct = require("../controller/updateAddToCartProduct")
+const deleteCartProduct = require("../controller/deleteCartProduct")
 
 const router = express.Router()
 
@@ -31,9 +33,11 @@ router.get("/get-category-product", GetCategoryListController)
 router.post("/get-category-wise-product", getCategoryWiseProductController)
 router.post("/product-details", productDetails)
 
-
+// add to cart
 router.post("/addToCart",authToken,addToCartController)
 router.get("/AddToCartData",authToken,countAddToCartProduct)
+router.post("/updateCartQuantity",authToken, updateAddToCartProduct);
+router.delete("/deleteCartProduct/:_id",authToken,deleteCartProduct);
 
 
 
